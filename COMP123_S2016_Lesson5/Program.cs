@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,68 +14,32 @@ namespace COMP123_S2016_Lesson5
      */
     public class Program
     {
-
-
         /**
          * the main method for our driver class Program
          * 
          * @method Main
          * @param {sting[]} args
+         * @returns {void}
          */
         public static void Main(string[] args)
         {
-            // List that represents deck of cards
-            List<Card> Deck = new List<Card>();
+            Deck deck = new Deck(); // create a deck of cards
+            deck.Display(); // display the initial state of the deck
+
+            deck.Shuffle(); // shuffle the deck
+            deck.Display(); // display the deck after shuffling
 
 
-            CreateDeck(Deck);
-            DisplayDeck(Deck);
-        }
-
-        public static void CreateDeck(List<Card> deck)
-        {
-            string suit = "";
-
-            for (int i = 0; i < 4; i++)
-            {
-                switch (i)
-                {
-                    case 0:
-                        suit = "hearts";
-                        break;
-                    case 1:
-                        suit = "clubs";
-                        break;
-                    case 2:
-                        suit = "diamonds";
-                        break;
-                    case 3:
-                        suit = "spades";
-                        break;
-
-                }
-                for (int face = 1; face < 14; face++)
-                {
-                    deck.Add(new Card(face, suit));
-                } // end for - face
-
-            }   //end for - suit
-
-        } // end for CreateDeck method
-
-        public static void DisplayDeck(List<Card> deck)
-        {
-            // lower case deck is a reference
-            Console.WriteLine("******************************************");
-            Console.WriteLine("+ Current Deck                           +");
-            Console.WriteLine("******************************************");
-            foreach (Card card in deck)
-            {
-                Console.WriteLine("{0} of {1}", card.Face, card.Suit);
-            }
-            Console.WriteLine("******************************************");
+            Card cardDelt = deck.Deal(); 
+            Console.WriteLine("Card Delt: {0} of {1}", cardDelt.Face, cardDelt.Suit);
             Console.WriteLine();
-        }
-    } //end Program
+            deck.Display();
+        } // end Main
 
-}
+
+
+    } // end Program
+
+} //end Program
+
+
